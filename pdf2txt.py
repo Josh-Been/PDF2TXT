@@ -9,6 +9,10 @@ Purpose: Convert PDF documents to TXT, cleaning as well as able to remove
 Instructions: Place script and the accompanying py and the English_words.txt
               in the same directory as your PDF files. The script will convert
               all PDF files in this directory.
+Thanks:
+    (1) pdfminer function obtained from https://github.com/Shahabks/Converter-pdf-files-to-.txt-or-.html
+    (2) English word list obtained from https://github.com/dwyl/english-words/
+    
 """
 
 import io, re, glob
@@ -18,6 +22,8 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 
 
+# Fuunction obtained from
+# https://github.com/Shahabks/Converter-pdf-files-to-.txt-or-.html
 def convert_pdf_to_txt(path):
     rsrcmgr = PDFResourceManager()
     retstr = io.StringIO()
@@ -95,6 +101,9 @@ def clean_text(r):
         q=q.replace('\n\n\n\n','\n\n').replace('\n\n\n','\n')
     return q
 
+# English word list obtained from
+# https://github.com/dwyl/english-words/
+# (Faster than NLTK.words())
 def eng_words():
     f=open('english_words.txt')
     f1=f.read()
